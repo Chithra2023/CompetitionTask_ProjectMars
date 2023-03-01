@@ -21,9 +21,9 @@ namespace CompetitionTask_ProjectMars.Utilities
             {
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id(locatorValue)));
             }
-            if (locator == "CssSelector")
+            if (locator == "LinkText")
             {
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.CssSelector(locatorValue)));
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.LinkText(locatorValue)));
             }
             if (locator == "Name")
             {

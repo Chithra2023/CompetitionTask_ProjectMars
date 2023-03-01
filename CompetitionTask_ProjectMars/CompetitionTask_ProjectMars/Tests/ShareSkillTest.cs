@@ -12,13 +12,28 @@ namespace CompetitionTask_ProjectMars.Tests
 {
     public class ShareSkillTest : CommonDriver
     {
-        [Test]
+        private object loginpageObj;
+
+        public ShareSkillTest()
+        {
+            driver = new ChromeDriver(); 
+        
+        }
+        [OneTimeSetUp]
         public void SignIn()
         {
-            driver = new ChromeDriver();
             // Login Page object initialization and definition
             LoginPage loginpageObj = new LoginPage(driver);
             loginpageObj.loginActions();
+        }
+
+        [Test]
+       public void AddShareSkill()
+        {
+            // Login Page object initialization and definition
+            ShareSkillPage shareSkillPageObj = new ShareSkillPage();
+            shareSkillPageObj.AddShareSkill(2);
+
         }
     }
 }
