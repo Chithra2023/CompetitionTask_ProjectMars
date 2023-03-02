@@ -16,8 +16,8 @@ namespace CompetitionTask_ProjectMars.Tests
 
         public ShareSkillTest()
         {
-            driver = new ChromeDriver(); 
-        
+            driver = new ChromeDriver();
+
         }
         [OneTimeSetUp]
         public void SignIn()
@@ -27,12 +27,26 @@ namespace CompetitionTask_ProjectMars.Tests
             loginpageObj.loginActions();
         }
 
-        [Test]
-       public void AddShareSkill()
+        [Test, Order(1)]
+        public void AddShareSkill()
         {
             // Login Page object initialization and definition
             ShareSkillPage shareSkillPageObj = new ShareSkillPage();
-            shareSkillPageObj.AddShareSkill(2);
+            shareSkillPageObj.AddShareSkillListing(2);
+        }
+
+        [Test, Order(2)]
+        public void EditListing()
+        {
+            // Login Page object initialization and definition
+            ManageListingsPage manageListingPageObj = new ManageListingsPage();
+            manageListingPageObj.EditListings(2);
+        }
+        [Test, Order(3)]
+        public void DeleteListing()
+        {
+        ManageListingsPage manageListingPageObj = new ManageListingsPage();
+        manageListingPageObj.DeleteListings(2);
 
         }
     }

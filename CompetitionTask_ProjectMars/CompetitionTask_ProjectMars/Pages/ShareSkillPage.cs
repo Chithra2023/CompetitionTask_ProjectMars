@@ -46,15 +46,15 @@ namespace CompetitionTask_ProjectMars.Pages
         private IWebElement hiddenRadioButton => driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[10]/div[2]/div/div[2]/div/input"));
         private IWebElement saveButton => driver.FindElement(By.XPath("//input[@value='Save']"));
 
-        public void AddShareSkill(int rowNumber)
+        public void AddShareSkillListing(int rowNumber)
         {
-            Wait.WaitForElementToBeClickable(driver, "LinkText", "Share Skill", 10);
+            Wait.WaitForElementToBeClickable(driver, "LinkText", "Share Skill", 5);
             shareSkillButton.Click();
 
             ExcelUtil.PopulateInCollection(@"C:\Chithra - Industry Connect\MVP Studio\Automation_Final\CompetitionTask_ProjectMars\ShareSkill_TestData.xlsx");
 
             //Enter Title
-            Wait.WaitForElementToBeVisible(driver, "Name", "title", 10);
+            Wait.WaitForElementToBeVisible(driver, "Name", "title", 5);
             titleTextBox.SendKeys(ExcelUtil.ReadData(rowNumber, "Title"));
 
             //Enter Description
@@ -71,7 +71,7 @@ namespace CompetitionTask_ProjectMars.Pages
 
             //Enter tag
             Tags.Click();
-            Tags.SendKeys(ExcelUtil.ReadData(2, "Tags"));
+            Tags.SendKeys(ExcelUtil.ReadData(rowNumber, "Tags"));
             Tags.SendKeys(Keys.Enter);
 
             //Enter Service Type
@@ -134,5 +134,31 @@ namespace CompetitionTask_ProjectMars.Pages
             //Click on Save
             saveButton.Click();
         }
+
+        //public void AddMultipleShareSkillListings()
+        //{
+  
+        //    //Populate excel file
+        //    ExcelUtil.PopulateInCollection(@"C:\Chithra - Industry Connect\MVP Studio\Automation_Final\CompetitionTask_ProjectMars\ShareSkill_TestData.xlsx");
+
+        //    //Click on button Share Skill
+        //    Wait.WaitForElementToBeClickable(driver, "LinkText", "Share Skill", 5);
+        //    shareSkillButton.Click();
+
+        //    int rowNumber = 2;
+        //    string title = ExcelUtil.ReadData(rowNumber, "Title");
+
+        //    //Check if title text is NOT "End of Dataset" (text)
+        //    while (title != "End of TestData")
+        //    {
+        //        AddShareSkillListing(rowNumber);
+        //        rowNumber++;
+        //        title = ExcelUtil.ReadData(rowNumber, "Title");
+        //        Thread.Sleep(1000);
+        //        shareSkillButton.Click();
+                
+        //    }
+        //}
+
     }
 }

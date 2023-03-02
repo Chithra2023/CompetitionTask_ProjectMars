@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace CompetitionTask_ProjectMars.Utilities
 {
-    public class Wait
+    public class Wait : CommonDriver
     {
+        public static void ImplicitWait(int second)
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(second);
+        }
         public static void WaitForElementToBeClickable(IWebDriver driver, string locator, string locatorValue, int seconds)
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
