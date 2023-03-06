@@ -45,9 +45,15 @@ namespace CompetitionTask_ProjectMars.Tests
         [Test, Order(3)]
         public void DeleteListing()
         {
-        ManageListingsPage manageListingPageObj = new ManageListingsPage();
-        manageListingPageObj.DeleteListings(2);
+            ManageListingsPage manageListingPageObj = new ManageListingsPage();
+            manageListingPageObj.DeleteListings(2);
 
+        }
+
+        [TearDown]
+        public void quit()
+        {
+            driver.Quit();
         }
     }
 }

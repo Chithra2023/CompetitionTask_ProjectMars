@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection.Emit;
+using AutoItX3Lib;
+using System.Diagnostics;
 
 namespace CompetitionTask_ProjectMars.Pages
 {
@@ -40,7 +42,7 @@ namespace CompetitionTask_ProjectMars.Pages
 
         //private IList<IWebElement> skillExchangeTags => driver.FindElements(By.XPath("//form[@class='ui form']/div[8]/div[4]/div/div/div/div/span/a"));
         private IWebElement creditTextBox => driver.FindElement(By.XPath("//input[@placeholder='Amount']"));
-        private IWebElement workSamplesButton => driver.FindElement(By.XPath("//i[@class='huge plus circle icon padding-25']"));
+        private IWebElement workSamplesButton => driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[9]/div/div[2]/section/div/label/div/span/i"));
         private IList<IWebElement> isActiveRadioButton => driver.FindElements(By.XPath("//input[@name='isActive']"));
         private IWebElement activeRadioButton => driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[10]/div[2]/div/div[1]/div/input"));
         private IWebElement hiddenRadioButton => driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[10]/div[2]/div/div[2]/div/input"));
@@ -119,7 +121,11 @@ namespace CompetitionTask_ProjectMars.Pages
                 creditRadioButton.Click();
                 creditTextBox.SendKeys(ExcelUtil.ReadData(rowNumber, "CreditAmount"));
             }
-            
+
+            //Upload WorkSamples
+            WorkSampleUpload();
+
+
             //Enter IsActive
             string activeTypeRadioLabel = ExcelUtil.ReadData(rowNumber, "ActiveOption");
             if (activeTypeRadioLabel.Equals("Active"))
@@ -132,7 +138,22 @@ namespace CompetitionTask_ProjectMars.Pages
                 hiddenRadioButton.Click();
             }
             //Click on Save
+            Wait.WaitForElementToBeClickable(driver, "XPath", "//input[@value='Save']", 5);
             saveButton.Click();
+        }
+
+        public void WorkSampleUpload()
+        {
+            workSamplesButton.Click();
+            ProcessStartInfo psi = new ProcessStartInfo(@"C:\Chithra - Industry Connect\MVP Studio\Automation_Final\CompetitionTask_ProjectMars\AutoIT\WorkSampleUploadScript.exe");
+            Process autoITProcess = Process.Start(psi);
+            autoITProcess.WaitForExit();
+            ////Run AutoIT-script to execute file uploading
+
+            //using (Process autoITProcess = Process.Start(Base.AutoScriptPath))
+            //{
+            //    autoITProcess.WaitForExit();
+            //}
         }
 
         //public void AddMultipleShareSkillListings()

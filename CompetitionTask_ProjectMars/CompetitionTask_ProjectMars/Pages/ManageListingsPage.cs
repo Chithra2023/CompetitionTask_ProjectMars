@@ -2,6 +2,7 @@
 using NUnit.Framework.Internal.Execution;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using AutoItX3Lib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
