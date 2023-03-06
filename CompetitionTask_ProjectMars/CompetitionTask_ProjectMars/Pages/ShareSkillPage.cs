@@ -47,7 +47,7 @@ namespace CompetitionTask_ProjectMars.Pages
         private IWebElement activeRadioButton => driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[10]/div[2]/div/div[1]/div/input"));
         private IWebElement hiddenRadioButton => driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[10]/div[2]/div/div[2]/div/input"));
         private IWebElement saveButton => driver.FindElement(By.XPath("//input[@value='Save']"));
-
+        public bool shareSkillListingAdded = false;
         public void AddShareSkillListing(int rowNumber)
         {
             Wait.WaitForElementToBeClickable(driver, "LinkText", "Share Skill", 5);
@@ -140,21 +140,17 @@ namespace CompetitionTask_ProjectMars.Pages
             //Click on Save
             Wait.WaitForElementToBeClickable(driver, "XPath", "//input[@value='Save']", 5);
             saveButton.Click();
+            shareSkillListingAdded = true;
         }
 
         public void WorkSampleUpload()
         {
             workSamplesButton.Click();
+            ////Run AutoIT-script to execute file uploading
             ProcessStartInfo psi = new ProcessStartInfo(@"C:\Chithra - Industry Connect\MVP Studio\Automation_Final\CompetitionTask_ProjectMars\AutoIT\WorkSampleUploadScript.exe");
             Process autoITProcess = Process.Start(psi);
             autoITProcess.WaitForExit();
-            ////Run AutoIT-script to execute file uploading
-
-            //using (Process autoITProcess = Process.Start(Base.AutoScriptPath))
-            //{
-            //    autoITProcess.WaitForExit();
-            //}
-        }
+         }
 
         //public void AddMultipleShareSkillListings()
         //{

@@ -33,6 +33,7 @@ namespace CompetitionTask_ProjectMars.Tests
             // Login Page object initialization and definition
             ShareSkillPage shareSkillPageObj = new ShareSkillPage();
             shareSkillPageObj.AddShareSkillListing(2);
+            shareSkillPageObj.shareSkillListingAdded.Should().BeTrue();
         }
 
         [Test, Order(2)]
